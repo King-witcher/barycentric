@@ -23,11 +23,11 @@ cd barycentric
 
 ### 2. Instalar dependências
 
-Agora, é necessário instalar alguns pacotes, como **OpenGL**, **GLEW** e outras bibliotecas auxiliares:
+Agora, é necessário instalar alguns pacotes, como o compilador, o **CMake** e as bibliotecas do **OpenGL** e do **X11** (usadas para abrir a janela):
 
 ```bash
-sudo apt-get install g++ cmake git
-sudo apt-get install libsoil-dev libglm-dev libassimp-dev libglew-dev libxinerama-dev libxcursor-dev libxi-dev libfreetype-dev libgl1-mesa-dev xorg-dev
+sudo apt-get update
+sudo apt-get install build-essential cmake git xorg-dev libgl1-mesa-dev
 ```
 
 O **SDL3**, que cria a janela, não precisa ser instalado. O CMake já baixa sozinho.
@@ -36,20 +36,18 @@ O **SDL3**, que cria a janela, não precisa ser instalado. O CMake já baixa soz
 
 ### 3. Compilar o projeto
 
-Para rodar o projeto, iremos rodar no terminal uma série de comandos, que visam:
-- limpar qualquer build anterior;
-- criar uma nova pasta build;
+Para rodar o projeto, vamos rodar no terminal uma série de comandos, que visam:
+- configurar o projeto na pasta build;
 - compilar e gerar um arquivo binário;
 - rodar o arquivo gerado.
 
 ```bash
-rm -rf build
-mkdir build && cd build
-cmake ..
-cmake --build .
-cd ..
+cmake -B build
+cmake --build build
 ./build/Barycentric
 ```
+
+Se algo der agluma merda na compilação, apagua a pasta build (`rm -rf build`) e roda os comandos de novo.
 
 Os shaders são lidos quando o programa abre, então depois de editar o `Image.fs` basta rodar `./build/Barycentric` de novo, sem compilar.
 
@@ -113,7 +111,7 @@ A função `test()` usa `bary()` para determinar se um ponto está dentro ou for
 bool test(in vec2 a, in vec2 b, in vec2 c, in vec2 p, inout vec3 barycoords);
 ```
 
-Além disso, a função armazena as coordenadas baricêntricas em `barycoords` — um ponteiro (até aqui eles nos perseguem...).
+Além disso, a função armazena as coordenadas baricêntricas em `barycoords` — que, por ser `inout`, funciona tipo um ponteiro: o que for escrito nela dentro da função vale também fora dela (até aqui eles nos perseguem...).
 
 ---
 

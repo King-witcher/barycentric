@@ -1,6 +1,6 @@
 # Barycentric Renderer
 
-Esse repositório visa incluir os arquivo bases e instruir àqueles que pretendem realizar o EP de **MVGA**, ministrado pelo professor Helton Hideraldo Biscaro na **EACH USP**. 
+Esse repositório visa incluir os arquivo bases e instruir àqueles que pretendem realizar o EP de **MVGA**, ministrado pelo professor Helton Hideraldo Biscaro na **EACH USP**.
 
 Desenvolvido em **OpenGL**, fazemos uso de computação gráfica para, no fim, renderizar um lindo e belo **triângulo** na tela!
 
@@ -23,14 +23,14 @@ cd barycentric
 
 ### 2. Instalar dependências
 
-Agora, é necessário instalar alguns pacotes, como **OpenGL**, **GLFW**, **GLEW** e outras bibliotecas auxiliares:
+Agora, é necessário instalar alguns pacotes, como **OpenGL**, **GLEW** e outras bibliotecas auxiliares:
 
 ```bash
 sudo apt-get install g++ cmake git
-sudo apt-get install libsoil-dev libglm-dev libassimp-dev libglew-dev libglfw3-dev libxinerama-dev libxcursor-dev libxi-dev libfreetype-dev libgl1-mesa-dev xorg-dev
+sudo apt-get install libsoil-dev libglm-dev libassimp-dev libglew-dev libxinerama-dev libxcursor-dev libxi-dev libfreetype-dev libgl1-mesa-dev xorg-dev
 ```
 
-Esses pacotes garantem que tudo irá renderizar perfeitamente.
+O **SDL3**, que cria a janela, não precisa ser instalado. O CMake já baixa sozinho.
 
 ---
 
@@ -50,6 +50,8 @@ cmake --build .
 cd ..
 ./build/Barycentric
 ```
+
+Os shaders são lidos quando o programa abre, então depois de editar o `Image.fs` basta rodar `./build/Barycentric` de novo, sem compilar.
 
 ---
 
@@ -77,7 +79,7 @@ Sinta-se livre para modificá-los!
 
 A função `bary()` (ainda **NÃO** implementada) calcula as coordenadas baricêntricas de um **ponto** em relação aos vértices `a, b, c` de um triângulo.
 
-Essas coordenadas basicamente indicam o quanto cada vértice "contribui" para formar um determinado ponto (dentro ou fora) do triângulo. 
+Essas coordenadas basicamente indicam o quanto cada vértice "contribui" para formar um determinado ponto (dentro ou fora) do triângulo.
 
 Sendo um pouco mais técnico, qualquer ponto (no plano do triângulo) pode ser escrito como uma **combinação linear** dos vértices, cujos **coeficientes** são justamente as **coordenadas baricêntricas**:
 
@@ -92,7 +94,7 @@ Se ainda não ficou muito claro, tente imaginar o seguinte:
 - O ponto A é (1, 0, 0);
 - O ponto B é (0, 1, 0);
 - O ponto C é (0, 0, 1).
-  
+
 Assim, a função que iremos implementar (e que você deve quebrar a cabeça para desenvolver) devolve essas coordenadas na forma de um `vec3`.
 
 ```cpp
@@ -123,7 +125,7 @@ Aqui precisamos entender um breve conceito: a função `main()` passa por cada p
 FragColor = vec4(color, 1);
 ```
 
-Portanto, seu objetivo é implementar a lógica da função `bary()`, fazer uma série de testes lógicos na `main()` utilizando a função `test()` para decidir qual será a cor final do pixel, modificando `color`! 
+Portanto, seu objetivo é implementar a lógica da função `bary()`, fazer uma série de testes lógicos na `main()` utilizando a função `test()` para decidir qual será a cor final do pixel, modificando `color`!
 
 Para deixar o efeito final mais interessante, há uma série de funções adicionais (disponibilizadas pelo professor) das quais você pode fazer uso, além da variável `iTime` que possibilita fazer animações (o céu é o limite!).
 

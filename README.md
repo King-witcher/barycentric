@@ -4,7 +4,9 @@ Esse repositório visa incluir os arquivo bases e instruir àqueles que pretende
 
 Desenvolvido em **OpenGL**, fazemos uso de computação gráfica para, no fim, renderizar um lindo e belo **triângulo** na tela!
 
-Tal projeto foi pensado para compilar e rodar facilmente em qualquer sistema **Linux** com suporte a OpenGL 3.3 ou superior. Caso esteja usando um sistema operacional diferente, como o **Windows**, minha dica é muito simples: *mude de sistema*!
+Tal projeto foi pensado para compilar e rodar facilmente em qualquer sistema **Linux** com suporte a OpenGL 3.3 ou superior.
+
+Caso esteja usando **Windows**, a dica é usar o **WSL2**: abra o PowerShell como administrador, rode `wsl --install`, reinicie o PC e siga este README dentro do Ubuntu que foi instalado. Vai te poupar tempo, dor de cabeça com dual boot e risco de corromper o sistema, além de facilitar passar arquivos entre o Windows e o Linux. É isso que o mercado sério usa. Também dá pra rodar Linux numa VM (VirtualBox, por exemplo) quem tiver vontade de aprender, ou se der errado com o WSL, mas dá mais trabalho. Não recomendo intalar Linux direto no computador, a menos que você já esteja acostumado ou queira migrar do Windows. É arriscado danificar o sistema, dá bem mais trabalho, enfia uma tela de seleção de boot toda vez que você ligar o PC, fraciona o seu armazenamento e te obriga a reiniciar o computador toda vez que for tentar abrir algo que não tem na distro (word, powerpoint, spotify, slack, jogos e etc), o que é um saco.
 
 ---
 
@@ -26,7 +28,7 @@ cd barycentric
 Agora, é necessário instalar alguns pacotes, como o compilador, o **CMake** e as bibliotecas do **OpenGL** e do **X11** (usadas para abrir a janela). Rode, dependendo de qual distro linux você está usando:
 
 ```bash
-# Debian / Ubuntu (a porcaria que todo mundo é mal acostumado) / Mint
+# Debian / Ubuntu (a porcaria com que todo mundo é mal acostumado) / Mint
 sudo apt-get update
 sudo apt-get install build-essential cmake git xorg-dev libgl1-mesa-dev
 
@@ -57,7 +59,7 @@ cmake --build build
 ./build/Barycentric
 ```
 
-Se algo der agluma merda na compilação, apagua a pasta build (`rm -rf build`) e roda os comandos de novo.
+Se algo der aglum BO na compilação, apagua a pasta build (`rm -rf build`) e roda os comandos de novo.
 
 Os shaders são lidos quando o programa abre, então depois de editar o `Image.fs` basta rodar `./build/Barycentric` de novo, sem compilar.
 

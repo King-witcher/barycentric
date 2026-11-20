@@ -23,11 +23,21 @@ cd barycentric
 
 ### 2. Instalar dependências
 
-Agora, é necessário instalar alguns pacotes, como o compilador, o **CMake** e as bibliotecas do **OpenGL** e do **X11** (usadas para abrir a janela):
+Agora, é necessário instalar alguns pacotes, como o compilador, o **CMake** e as bibliotecas do **OpenGL** e do **X11** (usadas para abrir a janela). Rode, dependendo de qual distro linux você está usando:
 
 ```bash
+# Debian / Ubuntu (a porcaria que todo mundo é mal acostumado) / Mint
 sudo apt-get update
 sudo apt-get install build-essential cmake git xorg-dev libgl1-mesa-dev
+
+# Fedora (a que eu mais recomendo)
+sudo dnf install gcc-c++ make cmake git libX11-devel libXext-devel mesa-libGL-devel
+
+# Arch / Manjaro
+sudo pacman -S base-devel cmake git libx11 libxext mesa
+
+# openSUSE
+sudo zypper install gcc-c++ make cmake git libX11-devel libXext-devel Mesa-libGL-devel
 ```
 
 O **SDL3**, que cria a janela, não precisa ser instalado. O CMake já baixa sozinho.
